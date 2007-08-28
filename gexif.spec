@@ -63,7 +63,6 @@ Icon=graphics_section.png
 Terminal=false
 Type=Application
 Categories=Graphics;GTK;X-MandrivaLinux-Multimedia-Graphics;
-Encoding=UTF-8
 EOF
 
 %find_lang %{name}
