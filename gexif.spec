@@ -1,17 +1,23 @@
-Summary:	Graphical tool to access EXIF extensions in JPEG files
+Summary:	Graphical tool to access EXIF information in JPEG files
 Name:		gexif
 Version:	0.5
-Release:	%mkrel 12
-License:	GPL
+Release:	%mkrel 13
+License:	LGPLv2+
 Group:		Graphics
-Url:		http://sourceforge.net/projects/libexif
+URL:		http://sourceforge.net/projects/libexif
 Source:		http://belnet.dl.sourceforge.net/sourceforge/libexif/%{name}-%{version}.tar.bz2
 # Bug #23536
 Patch:		gexif-0.5-warning_non_fatal.patch
 Requires:	popt
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
-BuildRequires:	libexif-devel libexif-gtk-devel popt-devel pkgconfig libgtk+2.0-devel
+
+Requires(post):		desktop-file-utils
+Requires(postun):	desktop-file-utils
+
+BuildRequires:	libexif-devel 
+BuildRequires:	libexif-gtk-devel 
+BuildRequires:	popt-devel 
+BuildRequires:	pkgconfig 
+BuildRequires:	libgtk+2.0-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -39,30 +45,17 @@ rm -rf %{buildroot}
 
 %makeinstall
 
-# menu stuff
-install -d %{buildroot}%{_menudir}
-cat > %{buildroot}%{_menudir}/%{name} << EOF
-?package(gexif): \
-command="%{_bindir}/%{name}" \
-title="GEXIF" \
-longtitle="View and edit the info which digital cameras add to your photos" \
-needs="x11" \
-section="Multimedia/Graphics" \
-icon="graphics_section.png" \
-xdg="true"
-EOF
-
 # XDG menu
 install -d %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
-Name=GEXIF
-Comment=View and edit the info which digital cameras add to your photos
+Name=Gexif
+Comment=Access EXIF information from pictures
 Exec=%{_bindir}/%{name}
-Icon=graphics_section.png
+Icon=graphics_section
 Terminal=false
 Type=Application
-Categories=Graphics;GTK;X-MandrivaLinux-Multimedia-Graphics;
+Categories=Graphics;GTK;
 EOF
 
 %find_lang %{name}
@@ -80,9 +73,7 @@ rm -fr %buildroot
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS COPYING ChangeLog
+%doc AUTHORS ChangeLog
 %{_bindir}/%{name}
-%{_menudir}/%{name}
 %{_datadir}/applications/mandriva-%{name}.desktop
-
 
