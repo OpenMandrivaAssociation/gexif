@@ -18,7 +18,6 @@ BuildRequires:	libexif-gtk-devel
 BuildRequires:	popt-devel 
 BuildRequires:	pkgconfig 
 BuildRequires:	libgtk+2.0-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Most digital cameras produce EXIF files, which are JPEG files with extra tags
