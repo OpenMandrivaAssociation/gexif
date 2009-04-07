@@ -36,14 +36,13 @@ This package contains a graphical frontend for the EXIF library.
 perl -n -i -e '/^\s*-DGTK_DISABLE_DEPRECATED\b.*$/ || print $_' gexif/Makefile*
 
 %build
-#configure2_5x
-%configure
+%configure2_5x
 %make
 
 %install
 rm -rf %{buildroot}
 
-%makeinstall
+%makeinstall_std
 
 # XDG menu
 install -d %{buildroot}%{_datadir}/applications
