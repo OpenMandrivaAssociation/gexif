@@ -1,24 +1,20 @@
 Summary:	Graphical tool to access EXIF information in JPEG files
 Name:		gexif
 Version:	0.5
-Release:	%mkrel 19
+Release:	20
 License:	LGPLv2+
 Group:		Graphics
 URL:		http://sourceforge.net/projects/libexif
-Source:		http://belnet.dl.sourceforge.net/sourceforge/libexif/%{name}-%{version}.tar.bz2
+Source0:	http://belnet.dl.sourceforge.net/sourceforge/libexif/%{name}-%{version}.tar.bz2
 # Bug #23536
-Patch:		gexif-0.5-warning_non_fatal.patch
-Requires:	popt
+Patch0:		gexif-0.5-warning_non_fatal.patch
 
-Requires(post):		desktop-file-utils
-Requires(postun):	desktop-file-utils
+BuildRequires:	pkgconfig(libexif)
+BuildRequires:	pkgconfig(libexif-gtk)
+BuildRequires:	pkgconfig(popt)
+BuildRequires:	pkgconfig(gtk+-2.0)
 
-BuildRequires:	libexif-devel 
-BuildRequires:	libexif-gtk-devel 
-BuildRequires:	popt-devel 
-BuildRequires:	pkgconfig 
-BuildRequires:	libgtk+2.0-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+Requires(post,postun):	desktop-file-utils
 
 %description
 Most digital cameras produce EXIF files, which are JPEG files with extra tags
@@ -28,9 +24,8 @@ an EXIF file and read the data from those tags.
 This package contains a graphical frontend for the EXIF library.
 
 %prep
-
 %setup -q
-%patch -p1 -b .warning_non_fatal
+%patch0 -p1 -b .warning_non_fatal
 
 # Make gexif compile with GTK 2.4.x or newer
 perl -n -i -e '/^\s*-DGTK_DISABLE_DEPRECATED\b.*$/ || print $_' gexif/Makefile*
@@ -40,8 +35,6 @@ perl -n -i -e '/^\s*-DGTK_DISABLE_DEPRECATED\b.*$/ || print $_' gexif/Makefile*
 %make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
 # XDG menu
@@ -59,23 +52,7 @@ EOF
 
 %find_lang %{name}
 
-%if %mdkversion < 200900
-%post
-%update_menus
-%update_desktop_database
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_menus
-%clean_desktop_database
-%endif
-
-%clean
-rm -fr %buildroot
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog
 %{_bindir}/%{name}
 %{_datadir}/applications/mandriva-%{name}.desktop
