@@ -1,23 +1,22 @@
 Summary:	Graphical tool to access EXIF information in JPEG files
 Name:		gexif
 Version:	0.5
-Release:	%mkrel 19
+Release:	20
 License:	LGPLv2+
 Group:		Graphics
 URL:		http://sourceforge.net/projects/libexif
 Source:		http://belnet.dl.sourceforge.net/sourceforge/libexif/%{name}-%{version}.tar.bz2
 # Bug #23536
 Patch:		gexif-0.5-warning_non_fatal.patch
-Requires:	popt
 
 Requires(post):		desktop-file-utils
 Requires(postun):	desktop-file-utils
 
-BuildRequires:	libexif-devel 
-BuildRequires:	libexif-gtk-devel 
+BuildRequires:	pkgconfig(libexif)
+BuildRequires:	pkgconfig(libexif-gtk)
 BuildRequires:	popt-devel 
 BuildRequires:	pkgconfig 
-BuildRequires:	libgtk+2.0-devel
+BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
