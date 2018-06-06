@@ -1,7 +1,7 @@
 Summary:	Graphical tool to access EXIF information in JPEG files
 Name:		gexif
 Version:	0.5
-Release:	28
+Release:	29
 License:	LGPLv2+
 Group:		Graphics
 Url:		http://sourceforge.net/projects/libexif
