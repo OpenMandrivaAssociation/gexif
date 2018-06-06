@@ -13,6 +13,7 @@ BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libexif-gtk)
 BuildRequires:	pkgconfig(popt)
+BuildRequires:	pkgconfig(libjpeg)
 Requires(post,postun):	desktop-file-utils
 
 %description
@@ -30,7 +31,9 @@ This package contains a graphical frontend for the EXIF library.
 perl -n -i -e '/^\s*-DGTK_DISABLE_DEPRECATED\b.*$/ || print $_' gexif/Makefile*
 
 %build
-%configure2_5x
+export CC=gcc
+export CXX=g++
+%configure
 %make
 
 %install
