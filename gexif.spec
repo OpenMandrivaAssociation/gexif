@@ -25,7 +25,7 @@ This package contains a graphical frontend for the EXIF library.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 # Make gexif compile with GTK 2.4.x or newer
 perl -n -i -e '/^\s*-DGTK_DISABLE_DEPRECATED\b.*$/ || print $_' gexif/Makefile*
