@@ -4,7 +4,7 @@ Version:	0.5
 Release:	31
 License:	LGPLv2+
 Group:		Graphics
-Url:		http://sourceforge.net/projects/libexif
+Url:		https://sourceforge.net/projects/libexif
 Source0:	http://belnet.dl.sourceforge.net/sourceforge/libexif/%{name}-%{version}.tar.bz2
 # Bug #23536
 Patch0:		gexif-0.5-warning_non_fatal.patch
