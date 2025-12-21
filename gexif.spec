@@ -9,6 +9,11 @@ Source0:	http://belnet.dl.sourceforge.net/sourceforge/libexif/%{name}-%{version}
 # Bug #23536
 Patch0:		gexif-0.5-warning_non_fatal.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libexif-gtk)
